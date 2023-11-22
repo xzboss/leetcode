@@ -3,7 +3,6 @@ import path from 'path';
 
 // 获取命令行参数
 const args = process.argv.slice(2);
-console.log(args,'@@@')
 const map = {
   'e': 'easy',
   'm': 'medium',
