@@ -1,0 +1,21 @@
+{
+  "name": "leetcode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo this is test",
+    "create": "node createFile.mjs "
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xzboss/leetcode.git"
+  },
+  "author": "xuzhou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xzboss/leetcode/issues"
+  },
+  "homepage": "https://github.com/xzboss/leetcode#readme"
+}
