@@ -2,7 +2,7 @@
  * @param {number[]} nums
  * @return {number}
  */
-// 贪心
+// 贪心 (不建议看)
 // 思路：从后遍历，优先找到能到终点的最靠前的数，然后以此为终点继续迭代
 // 最坏 O(n**2 / 2)
 // var jump = function(nums) {
