@@ -39,9 +39,7 @@ var RandomizedSet = function() {
  * @param {number} val
  * @return {boolean}
  */
-RandomizedSet.prototype.insert = function(val) {
-  console.log(this.list)
-  
+RandomizedSet.prototype.insert = function(val) {  
   if(this.map.has(val)){
     return false
   }else {
