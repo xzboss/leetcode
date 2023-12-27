@@ -131,4 +131,4 @@ var trap = function (height) {
     return sum;
 };
 
-console.log(trap([4,2,0,4,2,5]));
+console.log(trap([4,2,0,2,4]));
