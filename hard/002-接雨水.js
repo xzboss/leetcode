@@ -116,8 +116,7 @@ var trap = function (height) {
     while (current < height.length) {
         //如果栈不空并且当前指向的高度大于栈顶高度就一直循环
         while (stack.length > 0 && height[current] > height[stack[stack.length - 1]]) {
-            let h = height[stack[stack.length - 1]]; //取出要出栈的元素
-            stack.pop(); //出栈
+            let h = height[stack.pop()]; //取出要出栈的元素
             if (stack.length === 0) { // 栈空就出去
                 break; 
             }
@@ -131,4 +130,4 @@ var trap = function (height) {
     return sum;
 };
 
-console.log(trap([4,2,0,2,4]));
+console.log(trap([4,2,0,3,2,5]));
