@@ -21,21 +21,25 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
+// 我最开始其实也想到了类似used1去记录前面的数字是否已经选择，但是判断还是会一个不少的执行，虽然不执行操作，但是任然空转循环了
 var permute = function (nums) {
   const result = [];
   if (nums.length < 1) return result;
-  function dfs(start, ans = []) {
+  function dfs(ans, used) {
     if (ans.length === nums.length) {
       return result.push([...ans]);
     }
-    for (let i = 0; i < nums.length - ans.length; i++) {
-      let index = (i + start) % nums.length;
-      ans.push(nums[index]);
-      dfs(index + 1, ans);
-      ans.pop();
+    for (let i = 0; i < nums.length; i++) {
+      if (!used[i]) {
+        ans.push(nums[i]);
+        used[i] = true;
+        dfs(ans, used);
+        ans.pop();
+        used[i] = false;
+      }
     }
   }
-  dfs(0, []);
+  dfs([], new Array(nums.length).fill(false));
   return result;
 };
 console.log(JSON.stringify(permute([1, 2, 3])));
