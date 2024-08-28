@@ -1,5 +1,3 @@
-
-
 /**
 给定两个整数 n 和 k，返回范围 [1, n] 中所有可能的 k 个数的组合。
 
@@ -27,16 +25,22 @@
  * @param {number} k
  * @return {number[][]}
  */
-var combine = function(n, k) {
-    
+var combine = function (n, k) {
+  const result = [];
+  if (k < 1 || n < k) return result;
+  function dfs(start, ans) {
+    if (ans.length === k) {
+      result.push([...ans]);
+    }
+    for (let i = start; i <= n; i++) {
+      if (n - i + 1 + ans.length < k) return; // 节点数不够，直接放弃回溯
+      ans.push(i);
+      dfs(i + 1, ans);
+      ans.pop();
+    }
+  }
+  dfs(1, []);
+  return result;
 };
-
-
-
-
-
-
-
-
-
-//module.exports = 
+console.log(JSON.stringify(combine(4, 2)));
+//module.exports =
