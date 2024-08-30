@@ -20,14 +20,12 @@
 // 1. 暴力；列举出所有，再进行排除
 var generateParenthesis = function (n) {
   const result = [];
-  function dfs(root, deep, str, lNum, rNum) {
+  function dfs(deep, str, lNum, rNum) {
     if (deep === 2 * n) return result.push(str);
-    root.left = { left: "(", right: ")" };
-    root.right = { left: "(", right: ")" };
-    lNum > 0 && dfs(root.left, deep + 1, str + "(", lNum - 1, rNum);
-    rNum > 0 && dfs(root.left, deep + 1, str + ")", lNum, rNum - 1);
+    lNum > 0 && dfs(deep + 1, str + "(", lNum - 1, rNum);
+    rNum > 0 && dfs(deep + 1, str + ")", lNum, rNum - 1);
   }
-  dfs({ left: "(", right: ")" }, 0, "", n, n);
+  dfs(0, "", n, n);
   function verify(str) {
     let lNum = 0;
     for (let i = 0; i < str.length; i++) {
@@ -48,6 +46,18 @@ var generateParenthesis = function (n) {
     }
   }
   return res;
+};
+
+// 回溯
+var generateParenthesis = function (n) {
+  const result = [];
+  function dfs(str, lNum, rNum) {
+    if (str.length === 2 * n) return result.push(str);
+    lNum > 0 && dfs(str + "(", lNum - 1, rNum);
+    rNum > lNum && dfs(str + ")", lNum, rNum - 1);
+  }
+  dfs("", n, n);
+  return result;
 };
 console.log(JSON.stringify(generateParenthesis(3)));
 //module.exports =
