@@ -17,26 +17,37 @@
  * @param {number} n
  * @return {string[]}
  */
-// 初步思路，先正后反依次放置，以反括号放置位置为回溯点
+// 1. 暴力；列举出所有，再进行排除
 var generateParenthesis = function (n) {
   const result = [];
-  const used = new Array(2 * n).fill(false);
-  function dfs(start, path, used, depth) {
-    if (depth === 2 * n) {
-      return result.push(path.join(""));
-    }
-    for (let i = start; i < 2 * n; i++) {
-      if (!used[i]) {
-        path.push(start % 2 === 0 ? "(" : ")");
-        used[i] = true;
-        dfs(i + 1, path, used, depth + 1);
-        path.pop();
-        used[i] = false;
+  function dfs(root, deep, str, lNum, rNum) {
+    if (deep === 2 * n) return result.push(str);
+    root.left = { left: "(", right: ")" };
+    root.right = { left: "(", right: ")" };
+    lNum > 0 && dfs(root.left, deep + 1, str + "(", lNum - 1, rNum);
+    rNum > 0 && dfs(root.left, deep + 1, str + ")", lNum, rNum - 1);
+  }
+  dfs({ left: "(", right: ")" }, 0, "", n, n);
+  function verify(str) {
+    let lNum = 0;
+    for (let i = 0; i < str.length; i++) {
+      if (str[i] === "(") {
+        lNum++;
+      } else if (lNum > 0) {
+        lNum--;
+      } else {
+        return false;
       }
     }
+    return true;
   }
-  dfs(0, [], used, 0);
-  return result;
+  const res = [];
+  for (let i = 0; i < result.length; i++) {
+    if (verify(result[i])) {
+      res.push(result[i]);
+    }
+  }
+  return res;
 };
 console.log(JSON.stringify(generateParenthesis(3)));
 //module.exports =
