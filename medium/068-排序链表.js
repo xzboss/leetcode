@@ -69,7 +69,6 @@ function ListNode(val, next) {
 // 3. 分治
 var sortList = function (head) {
   if (!head || !head.next) return head;
-  // 快慢指针分
   let slow = head;
   let fast = head.next;
   while (fast && fast.next) {
@@ -78,26 +77,24 @@ var sortList = function (head) {
   }
   let rFirst = slow.next;
   slow.next = null;
-  sortList(head);
-  sortList(rFirst);
+  let leftList = sortList(head);
+  let rightList = sortList(rFirst);
+  
+  // merge
   let dummy = {};
-  let p = dummy
-  while (head && rFirst) {
-    if (head.val < rFirst.val) {
-        p.next = head;
-      head = head.next;
+  let p = dummy;
+  while (leftList && rightList) {
+    if (leftList.val < rightList.val) {
+      p.next = leftList;
+      leftList = leftList.next;
     } else {
-        p.next = rFirst;
-      rFirst = rFirst.next;
+      p.next = rightList;
+      rightList = rightList.next;
     }
     p = p.next;
   }
-  if (!head) {
-    p.next = rFirst;
-  } else {
-    p.next = head;
-  }
-  return dummy
+  p.next = leftList || rightList
+  return dummy.next;
 };
 const o3 = new ListNode(3);
 const o1 = new ListNode(1, o3);
