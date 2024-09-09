@@ -29,13 +29,12 @@
 
 // 输入数右移，然后移出的那一位作为的拼接在答案后面
 var reverseBits = function (n) {
-    let res = 0
-    for (let i = 0; i < 32; i++) {
-        res = res << 1 | (n & 1)
-        n = n >> 1
-    }
-    return res
+  let res = 0;
+  for (let i = 0; i < 32; i++) {
+    res = (res << 1) | (n & 1);
+    n = n >>> 1;
+  }
+  return res >>> 0; // 反转后的第一位为1，计算机会默认有符号读出，>>> 无符号处理下
 };
-console.log(reverseBits(964176192));
-
-//module.exports =
+console.log(reverseBits(4294967293));
+console.log(reverseBits(4294967293));
