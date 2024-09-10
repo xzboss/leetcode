@@ -31,7 +31,7 @@ var rangeBitwiseAnd = function (left, right) {
   return left << shift;
 };
 
-// 3. 任然是公共前缀，但是是倒序与
+// 3. 任然是公共前缀，但是是倒序与,BrianKernighan算法
 var rangeBitwiseAnd = function (left, right) {
   while (left < right) {
     right = right & (right - 1);
