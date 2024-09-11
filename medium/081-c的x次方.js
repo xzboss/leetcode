@@ -29,17 +29,20 @@ var myPow = function (x, n) {
 };
 
 // 快速幂
-// 很简单一个道理 比如 2 ** 9 = (2 ** 8 * 1) * (2 ** 4 * 0) * (2 ** 2 * 0) * (2 ** 1 * 1)，9 的二进制 1001
+// 道理: 比如 2 ** 9 = (2 ** (8 * 1)) * (2 ** (4 * 0)) * (2 ** (2 * 0)) * (2 ** (1 * 1))，9 的二进制 1001
 var myPow = function (x, n) {
   if (n < 0) {
-    x - 1 / x;
+    x = 1 / x;
     n = -n;
   }
-  while(n > 0){
-    const bit = n & 1
-     
+  let ans = 1;
+  while (n > 0) {
+    ans = ans * x ** (n & 1);
+    x = x * x;
+    n = Math.floor(n / 2);
   }
+  return ans;
 };
-console.log(myPow(1, 2147483647));
+console.log(myPow(2, 5));
 
 //module.exports =
