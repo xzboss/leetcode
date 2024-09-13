@@ -75,19 +75,19 @@ var longestPalindrome = function (s) {
   let len = 0;
   let start = 0;
   const dp = new Array(s.length).fill(0).map(() => new Array(s.length));
-  for (let col = 0; col < s.length; col++) {
-    dp[col][col] = true;
-    for (let row = 0; row < s.length; row++) {
-      if (row > col) continue; //右下角不做操作
-      if (col - row < 3) {
-        dp[row][col] = s[row] === s[col];
+  for (let j = 0; j < s.length; j++) {
+    dp[j][j] = true;
+    for (let i = 0; i < s.length; i++) {
+      if (i > j) continue; //右下角不做操作
+      if (j - i < 3) {
+        dp[i][j] = s[i] === s[j];
       } else {
-        dp[row][col] = s[row] === s[col] && dp[row + 1][col - 1];
+        dp[i][j] = s[i] === s[j] && dp[i + 1][j - 1];
       }
       // 记录最大
-      if (dp[row][col] && col - row > len) {
-        start = row;
-        len = col - row;
+      if (dp[i][j] && j - i > len) {
+        start = i;
+        len = j - i;
       }
     }
   }
