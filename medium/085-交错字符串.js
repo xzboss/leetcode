@@ -35,10 +35,30 @@ t = t1 + t2 + ... + tm
  * @param {string} s3
  * @return {boolean}
  */
-
+// 动态规划：dp含义：dp[i][j] 表示 s1 前 i 个字符和 s2 前 j 个字符能否组成 s3 前 i + j 个字符
+// dp[i][j] === dp[i - 1][j] || dp[i][j - 1] && (s1[i - 1] or s2[j - 1]) === s3[(i or j) - 1]
+// 其实就是等于二维表格向右向下走，可以压缩为一维
+// 返回dp[i][j]
 var isInterleave = function (s1, s2, s3) {
-
-  
+  if (s1.length + s2.length !== s3.length) return false;
+  // 长度为j
+  const dp = Array.from({ length: s2.length + 1 }, () => false);
+  dp[0] = true;
+  for (let i = 0; i <= s1.length; i++) {
+    for (let j = 0; j <= s2.length; j++) {
+      if (i > 0) {
+        dp[j] = dp[j] && s1[i - 1] === s3[i + j - 1];
+      }
+      if (j > 0) {
+        dp[j] = dp[j] || (dp[j - 1] && s2[j - 1] === s3[i + j - 1]);
+      }
+    }
+  }
+  //   dp.map((item) => {
+  //     console.log(JSON.stringify(item));
+  //   });
+  return dp[dp.length - 1];
 };
+console.log(isInterleave("a", "", "a"));
 
-//module.exports =
+//module.exports
