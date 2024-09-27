@@ -39,3 +39,5 @@ console.log(subarraySum([1, 3, 4, 4], 8));
  * @param {number} k
  * @return {number}
  */
+// 以 i 为结尾的数组，[0,i] 区间如果存在 mid 满足 mid 的前缀和等于 preSum - k
+// 那么 (mid, i] 区间的和一定等于 k
