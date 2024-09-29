@@ -1,9 +1,21 @@
-function test (func) {
-  const start = new Date().getTime()
-  func()
-  const end = new Date().getTime()
-  console.log(end - start)
+function test(func) {
+  const start = new Date().getTime();
+  func();
+  const end = new Date().getTime();
+  console.log(end - start);
 }
+test(() => {
+  const arr = new Array(10001).fill(1);
+  for (let i = 0; i < 10001; i++) {
+    arr.push(arr.shift());
+  }
+});
+test(() => {
+  const arr = new Array(10000);
+  for (let i = 0; i < 10000; i++) {
+    arr[i] = 1;
+  }
+});
 // speed fast -> slow
 // test(() => {
 //   const arr = new Array(10000000).fill('0')
@@ -43,8 +55,6 @@ function test (func) {
 //     a = 9
 //   }
 // })
-
-
 
 // test(()=>{
 //   var map = function(char){
@@ -87,14 +97,14 @@ function test (func) {
 //     n += str[i]
 //   }
 // })
-let str = new Array(10000000).fill(1)
+// let str = new Array(10000000).fill(1)
 
-test(() => {
-  str.slice(1, str.length - 1)
-})
-test(() => {
-  let n = 0
-  for (let i = 0; i < str.length; i++) {
-    n += str[i]
-  }
-})
+// test(() => {
+//   str.slice(1, str.length - 1)
+// })
+// test(() => {
+//   let n = 0
+//   for (let i = 0; i < str.length; i++) {
+//     n += str[i]
+//   }
+// })
