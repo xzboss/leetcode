@@ -4,42 +4,73 @@ function test(func) {
   const end = new Date().getTime();
   console.log(end - start);
 }
-test(() => {
-  const arr = [];
-  for (let i = 0; i < 10000000; i++) {
-    arr.push(1);
-  }
-});
-test(() => {
-  const arr = [];
-  for (let i = 0; i < 100000; i++) {
-    arr.unshift(1);
-  }
-});
-test(() => {
-  const arr = new Array(10000);
-  for (let i = 0; i < 100000; i++) {
-    arr.pop(1);
-  }
-});
-test(() => {
-  const arr = new Array(100000);
-  for (let i = 0; i < 10000; i++) {
-    arr.shift(1);
-  }
-});
-test(() => {
-  const arr = [];
-  for (let i = 0; i < 1000000; i++) {
-    arr.push(1);
-  }
-});
-test(() => {
-  const arr = new Array(1000000);
-  for (let i = 0; i < 1000000; i++) {
-    arr[i] = 1;
-  }
-});
+for (let i = 0; i < 10; i++) {
+  try {
+    test(() => {
+      const arr = new Array(10 ** i);
+    });
+
+    test(() => {
+      const arr = Array.from({ length: 10 ** i });
+    });
+
+    test(() => {
+      const arr = [];
+      arr.length = 10 ** i;
+    });
+  } catch (err) {}
+  console.log("---------", i, "------");
+}
+
+// test(() => {
+//   const arr = [];
+//   for (let i = 0; i < 10e5; i++) {
+//     arr.push(1);
+//   }
+// });
+// // const arr = new Array(10e6);
+// test(() => {
+//   // for (let i = 0; i < 10e6; i++) {
+//   //   arr[i] = 1;
+//   // }
+//   const arr = new Array(10e7);
+// });
+// test(() => {
+//   const arr = [];
+//   for (let i = 0; i < 10000000; i++) {
+//     arr.push(1);
+//   }
+// });
+// test(() => {
+//   const arr = [];
+//   for (let i = 0; i < 100000; i++) {
+//     arr.unshift(1);
+//   }
+// });
+// test(() => {
+//   const arr = new Array(10000000);
+//   for (let i = 0; i < 100000; i++) {
+//     arr.pop();
+//   }
+// });
+// test(() => {
+//   const arr = new Array(100000);
+//   for (let i = 0; i < 10000; i++) {
+//     arr.shift();
+//   }
+// });
+// test(() => {
+//   const arr = [];
+//   for (let i = 0; i < 1000000; i++) {
+//     arr.push(1);
+//   }
+// });
+// test(() => {
+//   const arr = new Array(1000000);
+//   for (let i = 0; i < 1000000; i++) {
+//     arr[i] = 1;
+//   }
+// });
 // speed fast -> slow
 // test(() => {
 //   const arr = new Array(10000000).fill('0')
