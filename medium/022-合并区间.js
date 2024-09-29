@@ -17,7 +17,7 @@
  * @param {number[][]} intervals
  * @return {number[][]}
  */
-// time: n
+// time: nlogn
 // space: n
 var merge = function(intervals) {
   intervals.sort((a,b)=>a[0] - b[0])
