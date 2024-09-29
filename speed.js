@@ -5,14 +5,38 @@ function test(func) {
   console.log(end - start);
 }
 test(() => {
-  const arr = new Array(10001).fill(1);
-  for (let i = 0; i < 10001; i++) {
-    arr.push(arr.shift());
+  const arr = [];
+  for (let i = 0; i < 10000000; i++) {
+    arr.push(1);
+  }
+});
+test(() => {
+  const arr = [];
+  for (let i = 0; i < 100000; i++) {
+    arr.unshift(1);
   }
 });
 test(() => {
   const arr = new Array(10000);
+  for (let i = 0; i < 100000; i++) {
+    arr.pop(1);
+  }
+});
+test(() => {
+  const arr = new Array(100000);
   for (let i = 0; i < 10000; i++) {
+    arr.shift(1);
+  }
+});
+test(() => {
+  const arr = [];
+  for (let i = 0; i < 1000000; i++) {
+    arr.push(1);
+  }
+});
+test(() => {
+  const arr = new Array(1000000);
+  for (let i = 0; i < 1000000; i++) {
     arr[i] = 1;
   }
 });
