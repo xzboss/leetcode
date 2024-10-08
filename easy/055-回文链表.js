@@ -28,6 +28,28 @@ var isPalindrome = function (head) {
   }
   return i === -1;
 };
+
+// o(1) 前半部分慢指针进行翻转
+var isPalindrome = function (head) {
+  let slow = head;
+  let fast = head;
+  let pre = null;
+  while (fast !== null && fast.next !== null) {
+    fast = fast.next.next;
+    // 前半部分翻转
+    const temp = slow.next;
+    slow.next = pre;
+    pre = slow;
+    slow = temp;
+  }
+  if (fast) slow = slow.next;
+  while (slow) {
+    if (slow.val !== pre.val) return false;
+    slow = slow.next;
+    pre = pre.next;
+  }
+  return true;
+};
 const link = new Link([1, 0, 1]);
 console.log(link.head.next);
 console.log(isPalindrome(link.head.next));
