@@ -20,17 +20,35 @@ var addTwoNumbers = function (l1, l2) {
     const sum = l1.val + l2.val + carry;
     carry = sum >= 10 ? 1 : 0;
     p.next = new ListNode(sum % 10, null);
-    p = p.next
+    p = p.next;
     l1 = l1.next;
     l2 = l2.next;
   }
-  const node = l1 || l2;
+  let node = l1 || l2;
   while (node) {
     const sum = node.val + carry;
     carry = sum >= 10 ? 1 : 0;
     p.next = new ListNode(sum % 10, null);
+    p = p.next;
     node = node.next;
   }
+  if (carry) p.next = new ListNode(1, null);
+  return dummy.next;
+};
+
+var addTwoNumbers = function (l1, l2) {
+  let carry = 0;
+  const dummy = {};
+  let p = dummy;
+  while (l1 || l2) {
+    const sum = (l1 ? l1.val : 0) + (l2 ? l2.val : 0) + carry;
+    carry = sum >= 10 ? 1 : 0;
+    p.next = new ListNode(sum % 10, null);
+    p = p.next;
+    l1 = l1 && l1.next;
+    l2 = l2 && l2.next;
+  }
+  if (carry) p.next = new ListNode(1, null);
   return dummy.next;
 };
 const link = new Link([2, 4, 3]);
