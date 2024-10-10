@@ -20,12 +20,11 @@ var copyRandomList = function (head) {
     map.set(p, new _Node(p.val));
     p = p.next;
   }
-  p = map.get(head);
-  const dummy = { next: p };
+  p = head;
   while (p) {
-    p.next = map.get(p.next) || null;
-    p.random = map.get(p.random) || null;
+    map.get(p).next = map.get(p.next) || null;
+    map.get(p).random = map.get(p.random) || null;
     p = p.next;
   }
-  return dummy.next;
+  return map.get(head);
 };
